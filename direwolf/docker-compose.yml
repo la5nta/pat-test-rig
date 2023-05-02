@@ -1,19 +1,19 @@
 version: '3'
 services:
-  qtsoundmodem-1:
+  direwolf-1:
     build: .
-    image: qtsoundmodem
+    image: direwolf
     environment:
-      - DEVNAME=hw:2,0,3
+      - DEVNAME=plughw:2,0,2
     devices:
       - /dev/snd 
     ports:
       - "8000:8000"
-  qtsoundmodem-2:
+  direwolf-2:
     build: .
-    image: qtsoundmodem
+    image: direwolf
     environment:
-      - DEVNAME=hw:2,1,3
+      - DEVNAME=plughw:2,1,2
     devices:
       - /dev/snd 
     ports:

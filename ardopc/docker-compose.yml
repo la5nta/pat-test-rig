@@ -4,7 +4,7 @@ services:
     build: .
     image: ardopc 
     environment:
-      - DEVNAME=hw:2,0
+      - DEVNAME=hw:2,0,1
     devices:
       - /dev/snd 
     ports:
@@ -14,7 +14,7 @@ services:
     build: .
     image: ardopc
     environment:
-      - DEVNAME=hw:2,1
+      - DEVNAME=hw:2,1,1
     devices:
       - /dev/snd 
     ports:
