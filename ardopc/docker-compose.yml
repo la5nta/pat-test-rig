@@ -1,0 +1,22 @@
+version: '3'
+services:
+  ardopc-1:
+    build: .
+    image: ardopc 
+    environment:
+      - DEVNAME=hw:2,0
+    devices:
+      - /dev/snd 
+    ports:
+      - "8515:8515"
+      - "8516:8516"
+  ardopc-2:
+    build: .
+    image: ardopc
+    environment:
+      - DEVNAME=hw:2,1
+    devices:
+      - /dev/snd 
+    ports:
+      - "8525:8515"
+      - "8526:8516"
