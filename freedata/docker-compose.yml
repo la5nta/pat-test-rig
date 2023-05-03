@@ -1,0 +1,20 @@
+version: '3'
+services:
+  freedata-1:
+    build: .
+    image: freedata
+    environment:
+      - DEVNAME=hw:2,0
+    devices:
+      - /dev/snd 
+    ports:
+      - "8000:8000"
+  freedata-2:
+    build: .
+    image: freedata
+    environment:
+      - DEVNAME=hw:2,1
+    devices:
+      - /dev/snd 
+    ports:
+      - "8001:8000"
