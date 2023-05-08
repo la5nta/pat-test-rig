@@ -1,0 +1,4 @@
+FROM alpine
+RUN apk add --update --no-cache socat
+EXPOSE 514
+ENTRYPOINT socat UDP-LISTEN:514,fork,reuseaddr -

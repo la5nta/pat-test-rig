@@ -1,0 +1,69 @@
+version: '3'
+services:
+  varafm-1:
+    build: .
+    image: vara
+    environment:
+      - CARD=2
+      - DEVICE=0
+      - SUBDEVICE=6
+    devices:
+      - /dev/snd 
+    ports:
+      - "8300:8300"
+      - "8301:8301"
+    links: ["syslog"]
+    depends_on: ["syslog"]
+    entrypoint: ["/bin/sh", "-c", "envsubst < asoundrc.subst > ~/.asoundrc; tail -F -n0 .wine/drive_c/VARA\\ FM/VARAFM.log & xvfb-run wine .wine/drive_c/VARA\\ FM/VARAFM.exe"]
+  varafm-2:
+    build: .
+    image: vara
+    environment:
+      - CARD=2
+      - DEVICE=1
+      - SUBDEVICE=6
+    devices:
+      - /dev/snd
+    ports:
+      - "9300:8300"
+      - "9301:8301"
+    links:
+      - "syslog"
+    links: ["syslog"]
+    depends_on: ["syslog"]
+    entrypoint: ["/bin/sh", "-c", "envsubst < asoundrc.subst > ~/.asoundrc; tail -F -n0 .wine/drive_c/VARA\\ FM/VARAFM.log & xvfb-run wine .wine/drive_c/VARA\\ FM/VARAFM.exe"]
+  varahf-1:
+    build: .
+    image: vara
+    environment:
+      - CARD=2
+      - DEVICE=0
+      - SUBDEVICE=7
+    devices:
+      - /dev/snd 
+    ports:
+      - "8400:8300"
+      - "8401:8301"
+    links: ["syslog"]
+    depends_on: ["syslog"]
+    entrypoint: ["/bin/sh", "-c", "envsubst < asoundrc.subst > ~/.asoundrc; tail -F -n0 .wine/drive_c/VARA/VARAHF.log & xvfb-run wine .wine/drive_c/VARA/VARA.exe"]
+  varahf-2:
+    build: .
+    image: vara
+    environment:
+      - CARD=2
+      - DEVICE=1
+      - SUBDEVICE=7
+    devices:
+      - /dev/snd 
+    ports:
+      - "9400:8300"
+      - "9401:8301"
+    links: ["syslog"]
+    depends_on: ["syslog"]
+    entrypoint: ["/bin/sh", "-c", "envsubst < asoundrc.subst > ~/.asoundrc; tail -F -n0 .wine/drive_c/VARA/VARAHF.log & xvfb-run wine .wine/drive_c/VARA/VARA.exe"]
+  syslog:
+   build:
+     context: .
+     dockerfile: Dockerfile.syslog
+   image: alpine-syslog 
