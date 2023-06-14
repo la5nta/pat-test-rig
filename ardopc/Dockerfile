@@ -6,4 +6,4 @@ RUN wget -q https://www.cantab.net/users/john.wiseman/Downloads/Beta/ARDOPProjec
 RUN cd ARDOPProjects/ARDOPC && make
 
 WORKDIR /run
-ENTRYPOINT /src/ARDOPProjects/ARDOPC/ardopc 8515 $DEVNAME $DEVNAME --leaderlength=200
+ENTRYPOINT /src/ARDOPProjects/ARDOPC/ardopc 8515 $DEVNAME $DEVNAME --leaderlength=$LEADERLENGTH -L

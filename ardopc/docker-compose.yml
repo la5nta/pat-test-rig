@@ -5,6 +5,7 @@ services:
     image: ardopc 
     environment:
       - DEVNAME=hw:2,0,1
+      - LEADERLENGTH=200
     devices:
       - /dev/snd 
     ports:
@@ -15,6 +16,7 @@ services:
     image: ardopc
     environment:
       - DEVNAME=hw:2,1,1
+      - LEADERLENGTH=200
     devices:
       - /dev/snd 
     ports:
